@@ -27,7 +27,7 @@ export const createJob = createAsyncThunk(
           authorization: `Bearer ${thunkAPI.getState().user.user.token}`,
         },
       });
-      thunkAPI.dispatch(clearValue());
+      thunkAPI.dispatch(clearValues());
       return resp.data;
     } catch (error) {
       if (error.response.status === 401) {
@@ -46,8 +46,11 @@ const jobSlice = createSlice({
     handleChange: (state, { payload: { name, value } }) => {
       state[name] = value;
     },
-    clearValue: () => {
-      return initialState;
+    clearValues: () => {
+      return {
+        ...initialState,
+        jobLocation: getUserFromLocalStorage()?.location || "",
+      };
     },
   },
 
@@ -67,5 +70,5 @@ const jobSlice = createSlice({
   },
 });
 
-export const { handleChange, clearValue } = jobSlice.actions;
+export const { handleChange, clearValues } = jobSlice.actions;
 export default jobSlice.reducer;

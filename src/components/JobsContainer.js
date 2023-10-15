@@ -10,7 +10,7 @@ const JobsContainer = () => {
   const dispatch = useDispatch();
 
   if (isLoading) {
-    return <Loading />;
+    return <Loading center />;
   }
   if (jobs.length === 0) {
     return (

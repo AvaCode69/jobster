@@ -10,6 +10,7 @@ const PageBtnContainer = () => {
   const pages = Array.from({ length: numOfPages }, (_, index) => {
     return index + 1;
   });
+
   const nextPage = () => {
     let newPage = page + 1;
     if (newPage > numOfPages) {
@@ -24,9 +25,10 @@ const PageBtnContainer = () => {
     }
     dispatch(changePage(newPage));
   };
+
   return (
     <Wrapper>
-      <button className="prev-btn" onClick={prevPage}>
+      <button type="button" className="prev-btn" onClick={prevPage}>
         <HiChevronDoubleLeft />
         prev
       </button>
@@ -35,8 +37,8 @@ const PageBtnContainer = () => {
           return (
             <button
               type="button"
-              className={pageNumber === page ? "pageBtn active" : "pageBtn"}
               key={pageNumber}
+              className={pageNumber === page ? "pageBtn active" : "pageBtn"}
               onClick={() => dispatch(changePage(pageNumber))}
             >
               {pageNumber}
@@ -44,12 +46,11 @@ const PageBtnContainer = () => {
           );
         })}
       </div>
-      <button className="next-btn" onClick={nextPage}>
+      <button type="button" className="next-btn" onClick={nextPage}>
         next
         <HiChevronDoubleRight />
       </button>
     </Wrapper>
   );
 };
-
 export default PageBtnContainer;

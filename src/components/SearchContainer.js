@@ -9,6 +9,7 @@ const SearchContainer = () => {
   const { jobTypeOptions, statusOptions } = useSelector((store) => store.job);
   const dispatch = useDispatch();
   const handleSearch = (e) => {
+    if (isLoading) return;
     dispatch(handleChange({ name: e.target.name, value: e.target.value }));
   };
   const handleSubmit = (e) => {
@@ -34,7 +35,7 @@ const SearchContainer = () => {
             name="searchStatus"
             value={searchStatus}
             handleChange={handleSearch}
-            list={statusOptions}
+            list={["all", ...statusOptions]}
           />
           {/* search by type */}
           <FormRowSelect
